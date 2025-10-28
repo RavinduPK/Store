@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon"  href="../client/src/assets/logoRK1.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RK Stores</title>
+    <script>
+      window.addEventListener('DOMContentLoaded', () => {
+      const updateTitle = () => {
+        const route = window.location.pathname.replace('/', '') || 'home';
+        document.title = `RK Stores | ${route.charAt(0).toUpperCase() + route.slice(1)}`;
+      };
+      updateTitle();
+      window.addEventListener('popstate', updateTitle);
+
+      // Listen for clicks on links to update title without refreshing
+      document.body.addEventListener('click', (e) => {
+        const link = e.target.closest('a');
+        if (link && link.href && link.origin === window.location.origin) {
+          e.preventDefault();
+          window.history.pushState({}, '', link.pathname);
+          updateTitle();
+        }
+      });
+      });
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
