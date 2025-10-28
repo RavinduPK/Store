@@ -32,7 +32,7 @@ const supabase = "https://stsbpkbhfvzdcmkmkiav.supabase.co";
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename='/Stores'>
      <Toaster position='top-right'/>
       <Routes>
         {/* Redirect root path to /register */}
