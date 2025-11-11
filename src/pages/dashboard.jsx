@@ -118,7 +118,7 @@ function Dashboard() {
       <div className="flex items-center space-x-4 animate-fade-in-right">
         {/* Profile Button */}
         <button
-          onClick={() => window.location.href = '/profile'}
+          onClick={() => window.location.href = 'profile'}
           className="relative group p-3 rounded-2xl bg-gradient-to-r from-blue-500 to-indigo-600 text-white shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-110 hover:-translate-y-1 overflow-hidden animate-bounce-in animation-delay-200"
         >
           {/* Shimmer effect */}
@@ -141,7 +141,7 @@ function Dashboard() {
 
         {/* Logout Button */}
         <button
-          onClick={() => window.location.href = '/login'}
+          onClick={() => window.location.href = 'login'}
           className="relative group p-3 rounded-2xl bg-gradient-to-r from-indigo-500 to-purple-600 text-white shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-110 hover:-translate-y-1 overflow-hidden animate-bounce-in animation-delay-300"
         >
           {/* Shimmer effect */}
@@ -397,7 +397,7 @@ function Dashboard() {
                 
                 <button
                   className="px-10 py-5 bg-white/90 backdrop-blur-sm text-gray-800 rounded-3xl font-bold border border-white/60 hover:bg-white hover:border-gray-200 transition-all duration-300 hover:scale-105 hover:-translate-y-1 shadow-lg hover:shadow-xl"
-                  onClick={() => window.location.href = '/products1'}
+                  onClick={() => window.location.href = 'products1'}
                 >
                   View Collection
                 </button>
@@ -746,7 +746,7 @@ function Dashboard() {
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
             <button 
             onClick={() => {
-              window.location.href = '/products1';
+              window.location.href = 'products1';
             }}
             className="group relative px-12 py-5 bg-white text-blue-600 rounded-full font-black text-lg shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-105 hover:-translate-y-1 overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-r from-yellow-400 to-orange-400 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>

@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import backgroundImage from "../assets/shopping.jpg";
-import sidepic from "../assets/cart.jpg";
 import { Eye, EyeOff, User, Mail, Lock, ArrowRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Signup() {
   const navigate = useNavigate();
@@ -15,13 +16,45 @@ function Signup() {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    setTimeout(() => {
-      console.log("Form submitted:", form);
+
+    try {
+      const response = await fetch("http://localhost:3001/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        toast.success(data.message || "Registration successful!", {
+          position: "top-right",
+          autoClose: 2500,
+          theme: "colored",
+        });
+
+        // Redirect after 2.5 seconds
+        setTimeout(() => navigate("/login"), 2500);
+      } else {
+        toast.error(data.error || data.errors?.[0]?.msg || "Registration failed!", {
+          position: "top-right",
+          autoClose: 3000,
+          theme: "colored",
+        });
+      }
+    } catch (error) {
+      console.error("Signup error:", error);
+      toast.error("Something went wrong. Please try again.", {
+        position: "top-right",
+        autoClose: 3000,
+        theme: "colored",
+      });
+    } finally {
       setLoading(false);
-    }, 2000);
+    }
   };
 
   return (
@@ -32,17 +65,17 @@ function Signup() {
       {/* Overlay */}
       <div className="absolute inset-0 bg-black/40 backdrop-blur-[2px]"></div>
 
+      {/* Toast Notifications */}
+      <ToastContainer />
+
       {/* Main Card */}
       <div className="relative w-[90%] md:w-2/3 lg:w-md flex flex-col md:flex-row 
                       rounded-3xl overflow-hidden border border-white/20 shadow-2xl z-10 
                       bg-white/10 backdrop-blur-2xl backdrop-saturate-150
                       hover:backdrop-blur-3xl transition-all duration-500 ease-in-out">
 
-       
-
-        {/* Right Side - Signup Form */}
-        <div className="w-full  flex flex-col justify-center p-2 sm:p-3 md:p-12 relative">
-          {/* Glow accent */}
+        {/* Signup Form Section */}
+        <div className="w-full flex flex-col justify-center p-2 sm:p-3 md:p-12 relative">
           <div className="absolute inset-0 -z-10 bg-gradient-to-br from-blue-500/10 to-indigo-600/10 blur-3xl rounded-3xl"></div>
 
           <div className="max-w-md mx-auto w-full">
@@ -58,7 +91,6 @@ function Signup() {
 
             {/* Form */}
             <form onSubmit={handleSubmit} className="space-y-5 sm:space-y-6">
-              {/* Input Fields */}
               {[
                 { name: "name", type: "text", icon: User, placeholder: "Full Name" },
                 { name: "email", type: "email", icon: Mail, placeholder: "Email Address" },

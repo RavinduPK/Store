@@ -311,7 +311,7 @@ function FoodsPage() {
                 }
                 localStorage.setItem("/cart", JSON.stringify(storedCart));
                 window.dispatchEvent(new Event("storage"));
-                window.location.href = "/cart";
+                window.location.href = "cart";
               }}
               className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 rounded-2xl font-semibold bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white shadow-lg hover:shadow-2xl hover:scale-105 transition-all text-sm sm:text-base"
             >

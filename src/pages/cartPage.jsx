@@ -97,7 +97,7 @@ function CartPage() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-10 gap-4">
         <button
-          onClick={()=>window.location.href = '/products1'}
+          onClick={()=>window.location.href = 'products1'}
           className="flex items-center gap-2 px-5 py-2 rounded-full bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white shadow-lg hover:scale-105 transition-all"
         >
           <ArrowLeft className="w-5 h-5" />

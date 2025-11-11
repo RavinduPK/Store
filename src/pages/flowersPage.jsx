@@ -379,7 +379,7 @@ function FlowerPage() {
                 else stored.push({ ...selectedItem, quantity: 1 });
                 localStorage.setItem("/cart", JSON.stringify(stored));
                 window.dispatchEvent(new Event("storage"));
-                window.location.href = "/cart";
+                window.location.href = "cart";
               }}
               className="px-6 sm:px-8 py-3 sm:py-4 rounded-2xl font-semibold bg-gradient-to-r from-rose-700 to-pink-700 text-white shadow-lg hover:scale-105 transition-all text-sm sm:text-base"
             >
