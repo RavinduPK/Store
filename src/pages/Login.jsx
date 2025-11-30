@@ -21,7 +21,7 @@ function Login() {
     e.preventDefault();
     setLoading(true);
     try {
-      const res = await axios.post("https://rk-store-backend-1.onrender.com/login", form);
+      const res = await axios.post("https://rk-store-backend-3.onrender.com/login", form);
       toast.success(res.data.message);
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("userEmail", form.email);
