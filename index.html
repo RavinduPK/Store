@@ -1,23 +1,33 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-
-    <!-- Favicon -->
-    <link rel="icon" href="../client/src/assets/logoRK1.png" />
-
-    <!-- Responsive -->
+    <link rel="icon"  href="../client/src/assets/logoRK1.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <!-- Default Title (React Router will change per page if needed) -->
     <title>RK Stores</title>
+    <script>
+  window.addEventListener('DOMContentLoaded', () => {
+  const updateTitle = () => {
+    const route = window.location.pathname.replace('/', '') || 'home';
+    document.title = `RK Stores | ${route.charAt(0).toUpperCase() + route.slice(1)}`;
+  };
+  updateTitle();
+  window.addEventListener('popstate', updateTitle);
+
+  document.body.addEventListener('click', (e) => {
+    const link = e.target.closest('a');
+    if (link && link.href && link.origin === window.location.origin) {
+      e.preventDefault();
+      window.history.pushState({}, '', link.pathname);
+      updateTitle();
+    }
+  });
+  });
+</script>
+
   </head>
-
   <body>
-    <!-- React root -->
     <div id="root"></div>
-
-    <!-- React Entry File -->
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
