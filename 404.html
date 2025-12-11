@@ -1,7 +1,39 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta http-equiv="refresh" content="0; URL=/" />
+    <meta charset="utf-8" />
+    <title>Redirecting...</title>
+    <meta name="robots" content="noindex">
+    <script>
+      // GitHub Pages project site SPA redirect.
+      // Redirect unknown routes back to the repo base (`/Store/`) and
+      // preserve the original path by placing it into the hash so the
+      // client-side router can handle it.
+      (function () {
+        var repoBase = '/Store/';
+        var path = window.location.pathname || '/';
+        var search = window.location.search || '';
+        var hash = window.location.hash || '';
+
+        // If we're already at the repo base, just go back (preserve hash)
+        if (path === repoBase || path === repoBase.slice(0, -1)) {
+          window.location.replace(repoBase + hash);
+          return;
+        }
+
+        // Build a target that navigates to the SPA root and encodes the
+        // original path into the hash so BrowserRouter (or other routers)
+        // can read it if you convert to hash-based handling client-side.
+        var target = repoBase + '#' + path + search + hash;
+
+        // As a fallback for older clients, include a meta refresh too.
+        window.location.replace(target);
+      })();
+    </script>
+    <meta http-equiv="refresh" content="0; URL=/Store/" />
   </head>
-  <body></body>
+  <body>
+    <p>Redirecting to the app…</p>
+    <p><a href="/Store/">Click here if you are not redirected.</a></p>
+  </body>
 </html>
